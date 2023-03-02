@@ -2,7 +2,7 @@ from pymongo import MongoClient
 import os
 
 client = MongoClient('mongodb://' + os.environ['MONGODB_HOSTNAME'], 27017)
-db = client.mydb
+db = client.b_db
 
 # Use collection "lists" in the databse
 collection = db.lists
@@ -10,7 +10,6 @@ collection = db.lists
 def insert_brevet(brevet_dist, start_time, control_list):
     """
     Inserts a new brevet data into the database
-
     Inputs a Dist(int), time(str) and a control_list (list of dictionaties
     Returns the unique ID assigned to the document by mongo (primary key.)
     """
