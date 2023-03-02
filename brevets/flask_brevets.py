@@ -8,6 +8,7 @@ import flask
 from flask import request
 import arrow  # Replacement for datetime, based on moment.js
 import acp_times  # Brevet time calculations
+from brevetsmongo import insert_brevet, retrieve_brevet
 import config
 
 import logging
@@ -35,6 +36,57 @@ def page_not_found(error):
     app.logger.debug("Page not found")
     return flask.render_template('404.html'), 404
 
+@app.route("/_insert_b", methods=["POST"])
+def _insert_b():
+    #Work Here
+    app.logger.debug("in insert function")
+    try:
+        # Read the entire request body as a JSON
+        # This will fail if the request body is NOT a JSON.
+        input_json = request.json
+        # if successful, input_json is automatically parsed into a python dictionary!
+
+        # Because input_json is a dictionary, we can do this:
+        brevet_dist = input_json["Distance"]
+        start_time = input_json["Start_Time"]
+        control_list = input_json["Control_List"]
+
+        b_db_id = insert_brevet(brevet_dist, start_time, control_list)
+
+        return flask.jsonify(result={},
+                             message="Inserted!",
+                             status=1,  # This is defined by you. You just read this value in your javascript.
+                             mongo_id=b_db_id)
+    except:
+        # The reason for the try and except is to ensure Flask responds with a JSON.
+        # If Flask catches your error, it means you didn't catch it yourself,
+        # And Flask, by default, returns the error in an HTML.
+        # We want /insert to respond with a JSON no matter what!
+        return flask.jsonify(result={},
+                             message="Oh no! Server error!",
+                             status=0,
+                             mongo_id='None')
+
+
+@app.route("/_retrieve_b")
+def _retrive_b():
+    #WORK HERE
+    """
+    /fetch : fetches the newest to-do list from the database.
+    Accepts GET requests ONLY!
+    JSON interface: gets JSON, responds with JSON
+    """
+    try:
+        brevet_dist, start_time, control_list = retrieve_brevet()
+        return flask.jsonify(
+                result={"Distance": brevet_dist, "Start_Time": start_time, "Control_list": control_list},
+                status=1,
+                message="Successfully fetched brevet list!")
+    except:
+        return flask.jsonify(
+                result={},
+                status=0,
+                message="Something went wrong, couldn't fetch any Brevets!")
 
 ###############
 #
