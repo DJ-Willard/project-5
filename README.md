@@ -3,7 +3,7 @@ Brevet time calculator with MongoDB!
 
 ## Overview
 
-You'll add a storage to your previous project using MongoDB and `docker-compose`.
+We add a storage to your previous project using MongoDB and `docker-compose`.
 As we discussed, `docker-compose` makes it easier to create, manage and connect multiple container to create a single service comprised of different sub-services.
 
 Presently, there's only a placeholder directory for your Flask app, and a `docker-compose` configuration file. You will copy over `brevets/` from your completed project 4, add a MongoDB service to docker-compose and your Flask app. You will also add two buttons named `Submit` and `Display` to the webpage. `Submit` must store the information (brevet distance, start time, checkpoints and their opening and closing times) in the database (overwriting existing ones). `Display` will fetch the information from the database and fill in the form with them.
@@ -25,27 +25,21 @@ Recommended: Review [MongoDB README](MONGODB.md) and[Docker Compose README](COMP
 3. Update README.md with brevet control time calculation rules (you were supposed to do this for Project 4), and additional information regarding this project.
 	- This project will be peer-reviewed, so be thorough.
 
-## Grading Rubric
+## Project Update and Description
 
-* If your code works as expected: 100 points. This includes:
-	* Front-end implementation (`Submit` and `Display`).
-	
-	* Back-end implementation (Connecting to MongoDB, insertion and selection).
-	
-	* AJAX interaction between the frontend and backend (AJAX for `Submit` and `Display`).
-	
-	* Updating `README` with a clear specification (including details from Project 4).
-	
-	* Handling errors correctly.
-	
-	* Writing at least 2 correct tests using nose (put them in `tests`, follow Project 3 if necessary), and all should pass.
+* We used docker compose to create a database and a Flask API for the Code we edited in P4.
+* We then updated calc.html to use AJAK the reverse of P3.
+* We add submit and display buttons that we pass values though JSON passes
+* Form there we added a doc 'brevetsmongo.py` that handles all the logic for mongo db and the interactions was added to the 'flask_brevet.py'
+* We then implemented an automated test to ensure everything was working.
+* please referance Helpful Examples below for implemention logic help:
 
-* If DB operations do not work as expected (either submit fails to store information, or display fails to retrieve and show information correctly), 60 points will be docked.
+DockerMongo
+https://github.com/UO-CIS322/DockerMongo: Just a basic Flask app that talks to a MongoDB service through the network set up by docker compose.
 
-* If database-related tests are not found in `brevets/tests/`, or are incomplete, or do not pass, 20 points will be docked.
-
-* If docker does not build/run correctly, or the yaml file is not updated correctly, 5 will be assigned assuming README is updated.
+TodoListApp
+https://github.com/UO-CIS322/TodoListApp: A simple web-based to-do list based on Flask and MongoDB, with AJAX interactions!
 
 ## Authors
 
-Michal Young, Ram Durairajan. Updated by Ali Hassani.
+Daniel Willard
