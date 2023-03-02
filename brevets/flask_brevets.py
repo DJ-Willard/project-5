@@ -47,9 +47,9 @@ def _insert_b():
         # if successful, input_json is automatically parsed into a python dictionary!
 
         # Because input_json is a dictionary, we can do this:
-        brevet_dist = input_json["Distance"]
-        start_time = input_json["Start_Time"]
-        control_list = input_json["Control_List"]
+        brevet_dist = input_json["brevet_dist"]
+        start_time = input_json["start_time"]
+        control_list = input_json["control_list"]
 
         b_db_id = insert_brevet(brevet_dist, start_time, control_list)
 

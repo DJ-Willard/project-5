@@ -15,9 +15,9 @@ def insert_brevet(brevet_dist, start_time, control_list):
     Returns the unique ID assigned to the document by mongo (primary key.)
     """
     output = collection.insert_one({
-        "Distance": brevet_dist,
-        "Start_Time": start_time,
-        "Control_List": control_list})
+        "brevet_dist": brevet_dist,
+        "start_time": start_time,
+        "control_list": control_list})
     _id = output.inserted_id  # this is how you obtain the primary key (_id) mongo assigns to your inserted document.
     return str(_id)
 def retrieve_brevet():
@@ -34,4 +34,4 @@ def retrieve_brevet():
     # lists is a PyMongo cursor, which acts like a pointer.
     # We need to iterate through it, even if we know it has only one entry:
     for controls in controls_listed:
-        return controls["Distance"], controls["Start_Time"], controls["Control_List"]
+        return controls["brevet_dist"], controls["start_time"], controls["control_list"]
