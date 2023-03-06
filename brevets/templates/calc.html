@@ -115,7 +115,7 @@
             <!-- row -->
          </form>
          <script type="text/javascript">
-            var SCRIPT_ROOT = {{ request.script_root|tojson|safe }} ;
+            var SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
             var TIME_CALC_URL = SCRIPT_ROOT + "/_calc_times";
             var INSERT_URL = SCRIPT_ROOT + "/_insert_b";
             var RETRIEVE_URL = SCRIPT_ROOT + "/_retrieve_b";
@@ -155,9 +155,9 @@
                 $('input[name="miles"]').change(
                    function() {
                        var miles = parseFloat($(this).val());
-                       var km = (1.609344 * miles).toFixed(6) ;
+                       var km = (1.609344 * miles).toFixed(6);
                        console.log("Converted " + miles + " miles to " + km + " kilometers");
-                       var control_entry = $(this).parents(".control")
+                       var control_entry = $(this).parents(".control");
                        var target = control_entry.find("input[name='km']");
                        target.val( km );
                        // Then calculate times for this entry
@@ -167,9 +167,9 @@
                 $('input[name="km"]').change(
                    function() {
                        var km = parseFloat($(this).val());
-                       var miles = (0.621371 * km).toFixed(6) ;
+                       var miles = (0.621371 * km).toFixed(6);
                        console.log("Converted " + km + " km to " + miles + " miles");
-                       var control_entry = $(this).parents(".control")
+                       var control_entry = $(this).parents(".control");
                        var target = control_entry.find("input[name='miles']");
                        target.val( miles );
                        // Then calculate times for this entry
@@ -196,10 +196,10 @@
 	                    //if not empty, append to our list
 	                    if(km){
 	                       control_l_json = {
-	                             "miles": miles
+	                             "miles": miles,
 	                             "km": km,
 	                             "loc": loc,
-	                             "open_t": open_t
+	                             "open_t": open_t,
 	                             "close_t": close_t
 	                             }
 	                             control_list.push(control_l_json);
@@ -207,8 +207,8 @@
 	                    });
 	                    //construct the data we will be sending flask
 	                    var new_control_list = {
-	                       "brevet_dist": brevet_dist
-	                       "start_time": start_time
+	                       "brevet_dist": brevet_dist,
+	                       "start_time": start_time,
 	                       "control_list": control_list};
 	                    //move data to backend via ajax
 	                    $.ajax({
@@ -220,7 +220,7 @@
                            type: 'POST',
                            // URL: specified above
                            url: INSERT_URL,
-                           / Important step that we didn't use to do in P4:
+                           // Important step that we didn't use to do in P4:
                           // Convert our constructed dictionary to a JSON string!
                           data: JSON.stringify(new_control_list),
                           // On a successful response from flask:
