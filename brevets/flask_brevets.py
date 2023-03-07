@@ -79,9 +79,9 @@ def _retrive_b():
     app.logger.debug("we are in RB")
     try:
         brevet_dist, start_time, control_list = retrieve_brevet()
-        app.logger.debug(f'bDist' {brevet_dist})
-        app.logger.debug(f'sTime' {start_time})
-        app.logger.debug(f'control'{control_list})
+        app.logger.debug(f'bDist {brevet_dist}')
+        app.logger.debug(f'sTime {start_time}')
+        app.logger.debug(f'control {control_list}')
         return flask.jsonify(
                 result={"brevet_dist": brevet_dist, "start_time": start_time, "control_list": control_list},
                 status=1,
