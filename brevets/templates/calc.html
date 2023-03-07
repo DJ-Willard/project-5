@@ -125,9 +125,9 @@
             // Right now, only the kilometers, brevet_dist, start_time are passed
             // View flask_brevets.py for details.
             function calc_times(control) {
-              var km = control.find("input[name='km']").val();
-              var open_time_field = control.find("input[name='open']");
-              var close_time_field = control.find("input[name='close']");
+             var km = control.find("input[name='km']").val();
+             var open_time_field = control.find("input[name='open']");
+             var close_time_field = control.find("input[name='close']");
 	          var brevet_dist = $("#brevet_dist_km").val();
 	          console.log("brevet_dist" + brevet_dist);
 	          var start_time = $("#begin_date").val();
@@ -179,8 +179,8 @@
                     //WORK HERE INSERT EVENT (insert another JSON and event trigger by button)
                $('#insert').click(
                   function(event){
-                     event.preventDefault();
-                     var brevet_dist = $("#brevet_dist_km").val();
+                    event.preventDefault();
+                    var brevet_dist = $("#brevet_dist_km").val();
 	                 console.log("brevet_dist" + brevet_dist);
 	                 var start_time = $("#begin_date").val();
 	                 console.log("start_time" + start_time);
@@ -253,12 +253,14 @@
                              console.log(data);
                               if (data.status == 1) {
                                   console.log("Successfully fetched: ", data);
-                                  var brevet_dist = $("input[name='brevet_dist']").val(data.result.brevet_dist);
-                                  var start_time = $("input[name='start_time']").val(data.result.start_time);
+                                  $("#brevet_dist_km").val(data.result.brevet_dist);
+                                  $("#begin_date").val(data.result.start_time);
                                   var control_list = data.result.control_list;
+                                  console.log("Control_list: ", control_list);
                                   // We need to know how many items are in the fetched list
-                                  var num_items = control_list.length;
-                                  var current_cl = $('.control').length;
+                                  var num_items = control_list.length();
+                                  console.log("Fetched: ", num_items);
+                                  var current_cl = $('.control').length();
                                   console.log("Current: ", current_cl);
                                   console.log("Fetched: ", num_items);
                                   if (num_items > current_cl) {

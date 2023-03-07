@@ -76,10 +76,12 @@ def _retrive_b():
     Accepts GET requests ONLY!
     JSON interface: gets JSON, responds with JSON
     """
+    app.logger.debug(control_list)
     try:
         brevet_dist, start_time, control_list = retrieve_brevet()
+        app.logger.debug(control_list)
         return flask.jsonify(
-                result={"Distance": brevet_dist, "Start_Time": start_time, "Control_list": control_list},
+                result={"brevet_dist": brevet_dist, "start_time": start_time, "control_list": control_list},
                 status=1,
                 message="Successfully fetched brevet list!")
     except:
