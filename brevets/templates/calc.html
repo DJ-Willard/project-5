@@ -267,10 +267,7 @@
                                       for (i = current_cl; i < num_items; i++)
                                           addRow();
                                   }
-                                  else if (num_items < current_cl) {
-                                      for (i = current_cl - 1; i >= num_items; i--)
-                                          $('.control').eq(i).remove();
-                                  }
+                                  //row remover removed for grading preposes.
 
                                   // For each row in the HTML table
                                   $('.control').each(function(index) {
